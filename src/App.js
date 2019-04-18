@@ -1,8 +1,50 @@
 import React, { Component } from "react";
 import { OutTable, ExcelRenderer } from "./ExcelParser";
+import zipcelx from "zipcelx";
 
 import "./App.css";
 
+const config = {
+  filename: "general-ledger-Q1",
+  sheet: {
+    data: [
+      [
+        {
+          value: "National Number",
+          type: "number"
+        },
+        {
+          value: "First Name",
+          type: "string"
+        },
+        {
+          value: "Last Name",
+          type: "string"
+        },
+        {
+          value: "Birthday",
+          type: "string"
+        },
+        {
+          value: "",
+          type: "string"
+        },
+        {
+          value: 1000,
+          type: "number"
+        },
+        {
+          value: "Income - Webshop",
+          type: "string"
+        },
+        {
+          value: 1000,
+          type: "number"
+        },
+      ]
+    ]
+  }
+};
 class App extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +71,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <button
+          onClick={() => {
+            zipcelx(config);
+          }}
+        >
+          GENERATE
+        </button>
         <input
           type="file"
           onChange={this.fileHandler.bind(this)}
